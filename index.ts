@@ -5,17 +5,17 @@
 import baseX		from "base-x";
 import {createHash}	from "crypto";
 
-const ALPHA79 = "123456789" +
+const ALPHA80 = "123456789" +
 				"ABCDEFGHJKLMNPQRSTUVWXYZ" +
 				"abcdefghijkmnopqrstuvwxyz" +
-				"!@#$%^&*()_+-=\[]/?<>.";
+				"!@#$%^&*()_+-=\[]/?<>.~";
 
-const base79 = baseX(ALPHA79);
+const base80 = baseX(ALPHA80);
 
 console.log(makePass("yo", "noob.com"));
 
 function makePass(master: string, loginfor: string): string {
-	return	base79.encode(
+	return	base80.encode(
 				Buffer.from(
 					hash(master + loginfor)));
 }
