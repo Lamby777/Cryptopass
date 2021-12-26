@@ -7,7 +7,7 @@ import {createHash}	from "crypto";
 import * as prompt	from "prompt";
 
 // Length of final output
-const len = 20;
+const len = 14;
 
 // Superset of Base58
 const ALPHA80 = "123456789" +
@@ -51,8 +51,8 @@ function makePass(master: string, loginfor: string): string {
 	let pass: string;
 	
 	do {
-		pass = makePassHash(master, loginfor).substring(0, len-1);
-	} while (!fitsCriteria(pass)) 
+		pass = makePassHash(pass, loginfor).substring(0, len-1);
+	} while (!fitsCriteria(pass));
 	
 	return pass;
 }
