@@ -2,3 +2,4 @@
 *.js
 !_*.js
 node16
+node_modules/
