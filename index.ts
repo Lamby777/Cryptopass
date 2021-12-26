@@ -28,7 +28,7 @@ const base80 = baseX(ALPHA80);
 
 
 
-
+// I MEANT TEXT PROMPT, NOT GUI LOL
 prompt.start();
 prompt.get(["pass", "app"], (err: any, result: any) => {
 	if (err) return err;
