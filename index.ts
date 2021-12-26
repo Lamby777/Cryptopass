@@ -8,27 +8,54 @@ import {createHash}	from "crypto";
 // Length of final output
 const len = 20;
 
+// Superset of Base58
 const ALPHA80 = "123456789" +
 				"ABCDEFGHJKLMNPQRSTUVWXYZ" +
 				"abcdefghijkmnopqrstuvwxyz" +
 				"!@#$%^&*()_+-=\[]/?<>.~";
 
+// Not as special chars: !^&\[]/<>~
+
+// Things to check for later
+const specialChars = "!@#$%^&*()_+-=\[]/?<>.~".split("");
+const verySpecialChars = "@#$%*()_+-=?.".split("");
+const lowerBase58 = "abcdefghijkmnopqrstuvwxyz".split("");
+const upperBase58 = "ABCDEFGHJKLMNPQRSTUVWXYZ".split("");
+const numsBase58 = "123456789".split("");
+
+
+
+
+
 const base80 = baseX(ALPHA80);
 
-console.log(makePass("yo", "noob.com"));
+console.log(makePass("test", "     REPLiT "));
 
 function makePass(master: string, loginfor: string): string {
+	// Some people just can't decide naming conventions...
+	loginfor = normalizeLoginfor(loginfor);
 	let pass: string;
 	
 	do {
 		pass = makePassHash(master, loginfor).substring(0, len-1);
 	} while (!fitsCriteria(pass)) 
 	
-	return "";
+	return pass;
+}
+
+function normalizeLoginfor(loginfor: string): string {
+	loginfor = loginfor.toLowerCase().trim().replaceAll(" ", "");
+	return loginfor;
 }
 
 function fitsCriteria(pass: string): boolean {
-	return false;
+	return (
+		//specialChars.some(val => pass.includes(val)) &&
+		verySpecialChars.some(val => pass.includes(val)) &&
+		lowerBase58.some(val => pass.includes(val)) &&
+		upperBase58.some(val => pass.includes(val)) &&
+		numsBase58.some(val => pass.includes(val))
+	);
 }
 
 function makePassHash(master: string, loginfor: string): string {
