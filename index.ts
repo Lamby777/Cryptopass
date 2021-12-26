@@ -29,8 +29,8 @@ const base80 = baseX(ALPHA80);
 
 
 // I MEANT TEXT PROMPT, NOT GUI LOL
-prompt.start();
-prompt.get(["pass", "app"], (err: any, result: any) => {
+(prompt as any).start();
+(prompt as any).get(["pass", "app"], (err: any, result: any) => {
 	if (err) return err;
 	console.log(makePass(result.pass, result.app));
 });
