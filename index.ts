@@ -4,6 +4,7 @@
 // Imports
 import baseX		from "base-x";
 import {createHash}	from "crypto";
+import * as prompt	from "prompt";
 
 // Length of final output
 const len = 20;
@@ -23,13 +24,26 @@ const lowerBase58 = "abcdefghijkmnopqrstuvwxyz".split("");
 const upperBase58 = "ABCDEFGHJKLMNPQRSTUVWXYZ".split("");
 const numsBase58 = "123456789".split("");
 
-
-
-
-
 const base80 = baseX(ALPHA80);
 
-console.log(makePass("test", "     REPLiT "));
+
+
+
+prompt.start();
+prompt.get(["pass", "app"], (err: any, result: any) => {
+	if (err) return err;
+	console.log(makePass(result.pass, result.app));
+});
+
+
+
+
+
+
+
+
+
+// Functions
 
 function makePass(master: string, loginfor: string): string {
 	// Some people just can't decide naming conventions...
