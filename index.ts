@@ -51,7 +51,7 @@ function makePass(master: string, loginfor: string): string {
 	let pass: string;
 	
 	do {
-		pass = makePassHash(pass, loginfor).substring(0, len-1);
+		pass = makePassHash(pass ?? master, loginfor).substring(0, len-1);
 	} while (!fitsCriteria(pass));
 	
 	return pass;
